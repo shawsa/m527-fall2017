@@ -1,4 +1,163 @@
 \documentclass{article}
+
+\usepackage{fancyhdr} 
+%\usepackage{mathtools}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+
+\setlength\parindent{0pt}
+
 \begin{document}
-    Hello, world!
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m527 - Fall 2017 \\
+		Aug. 30, 2017
+	\end{flushright}
+	
+	{\large \textbf{HW1: Section 5.1: 2, 4, \& 10}}\bigbreak
+	\textbf{2-4} \space Determine the radius of convergence.\bigbreak
+	\textbf{2.} $\sum\limits_{m=0}^{\infty} (m+1)mx^{m}$
+	
+	
+	After simplifying $\sum\limits_{m=0}^{\infty} (m+1)mx^{m} = \sum\limits_{m=0}^{\infty} (m^{2}+m)x^{m}$, we apply the ratio test as follows:
+	\begin{equation*}
+	\begin{split}
+	\lim_{m\to\infty} \left\lvert \frac{((m+1)^{2}+(m+1))x^{n+1}}{(m^{2}+m)x^{n}}\right\rvert
+	& = \lvert x \rvert * \lim_{m\to\infty} \frac{m^{2}+3m+2}{m^{2}+m} \\
+	& = \lvert x \rvert * \lim_{m\to\infty} \frac{m^{2}+3m+2}{m^{2}+m} * \frac{m^{-2}}{m^{-2}} \\
+	& = \lvert x \rvert * \lim_{m\to\infty} \frac{1+3m^{-1}+2m^{-2}}{1+m^{-1}} \\
+	& = \lvert x \rvert\\
+	\end{split}
+	\end{equation*}
+	
+	The ratio test concludes that the series converges when $\lvert x \rvert < 1$. Thus $\sum\limits_{m=0}^{\infty} (m+1)mx^{m}$ is convergent for $ -1 < x < 1$ and the radius of and the radius of convergence is 1.
+	
+	\bigbreak
+
+	
+	\textbf{4.} $\sum\limits_{m=0}^{\infty} \frac{x^{2m+1}}{(2m+1)!}$
+	
+	Apply the ratio test as follows:
+	\begin{equation*}
+	\begin{split}
+	\lim_{m\to\infty} \left\lvert 
+	\frac{
+		\frac{x^{2(m+1)+1}}{(2(m+1)+1)!}
+	}{
+		\frac{x^{2m+1}}{(2m+1)!}
+	}
+	\right\rvert & = 
+	\lim_{m\to\infty} \left\lvert \frac{(2m+1)!x^{2m+3}}{(2m+3)!x^{2m+1}} \right\rvert \\
+	& = \lvert x^{2} \rvert \lim_{m\to\infty}  * \frac{(2m+1)!}{(2m+3)!} \\
+	& = \lvert x^{2} \rvert  \lim_{m\to\infty} * \frac{(2m+1)!}{(2m+3)(2m+2)(2m+1)!} \\
+	& = \lvert x^{2} \rvert  \lim_{m\to\infty} * \frac{1}{(2m+3)(2m+2)} \\
+	& = 0
+	\end{split}
+	\end{equation*}
+    
+    The ratio test concludes that the series converges when $0 < 1$. Thus $\sum\limits_{m=0}^{\infty} \frac{x^{2m+1}}{(2m+1)!}$ is convergent for all $x$ and the radius of convergence is infinite. 
+    
+    \bigbreak
+    
+    \textbf{10.} Find a power series solution in powers of $x$ for $y''-y'+xy=0$.
+    
+    Assume $y=\sum\limits_{n=0}^{\infty}a_{n}x^{n} = a_{0} + a_{1}x + \sum\limits_{n=2}^{\infty}a_{n}x^{n}$.
+    
+    Then $y'= a_{1} + \sum\limits_{n=2}^{\infty}na_{n}x^{n-1}$ and $y''= \sum\limits_{n=2}^{\infty}n(n-1)a_{n}x^{n-2}$.
+    
+    From these we can derive the following set of equations:
+    \begin{equation*}
+    \begin{split}
+    	y''& = 0 + 0 + \sum\limits_{n=2}^{\infty}n(n-1)a_{n}x^{n-2} \\
+    	-y' & = 0 + -a_{1} + \sum\limits_{n=2}^{\infty}-na_{n}x^{n-1} \\
+    	xy & = a_{0}x + a_{1}x^{2} + \sum\limits_{n=2}^{\infty}a_{n}x^{n+1} \\
+    \end{split}
+    \end{equation*}
+    
+    From our premise, we have 
+    \begin{equation}
+    \begin{split}
+    	0 & = y''-y'+xy \\
+    	& = (\sum\limits_{n=2}^{\infty}n(n-1)a_{n}x^{n-2}) +(-a_{1} + \sum\limits_{n=2}^{\infty}-na_{n}x^{n-1}) + (a_{0}x + a_{1}x^{2} + \sum\limits_{n=2}^{\infty}a_{n}x^{n+1}) \\
+    	& = -a_{n} + a_{0}x + a_{1}x^{2} + \sum\limits_{n=2}^{\infty}n(n-1)a_{n}x^{n-2} + \sum\limits_{n=2}^{\infty}-na_{n}x^{n-1} + \sum\limits_{n=2}^{\infty}a_{n}x^{n+1}
+    \end{split}
+    \end{equation}
+    
+    We would like each summation term to have identical powers of x at each index and start at the same index. Let us label each term as follows 
+    \begin{equation}
+    \begin{split}
+    	A & = \sum\limits_{n=2}^{\infty}n(n-1)a_{n}x^{n-2} \\
+    	B & = \sum\limits_{n=2}^{\infty}-na_{n}x^{n-1} \\
+    	C & = \sum\limits_{n=2}^{\infty}a_{n}x^{n+1}
+    \end{split}
+    \end{equation}
+    
+    From equations $(1)$ and $(2)$ we have 
+    \begin{equation}
+    	0 = -a_{1} + a_{0}x + a_{1}x^{2} + A + B + C.
+    \end{equation}
+    
+    By choosing the index substitution $k=n-2$, we obtain the following representation for $A$:
+    \begin{equation}
+    \begin{split}
+		A & = \sum\limits_{n=2}^{\infty}n(n-1)a_{n}x^{n-2} \\
+		& = \sum\limits_{k=0}^{\infty}(k+2)(k+1)a_{k+2}x^{k} \\
+		& = \sum\limits_{k=0}^{\infty}(k^{2}+3k+2)a_{k+2}x^{k} \\
+		& = 2a_{2} + 6a_{3}x + 12a_{4}x^{2} + \sum\limits_{k=3}^{\infty}(k^{2}+3k+2)a_{k+2}x^{k}
+	\end{split}
+    \end{equation}
+    
+    By choosing the index substitution $k=n-1$, we obtain the following representation for $B$:
+    \begin{equation}
+    \begin{split}
+		B & = \sum\limits_{n=2}^{\infty}-na_{n}x^{n-1} \\
+		& = \sum\limits_{k=1}^{\infty}-(k+1)a_{k+1}x^{k} \\
+		& = -2a_{2}x - 3a_{3}x^{2} + \sum\limits_{k=3}^{\infty}-(k+1)a_{k+1}x^{k}
+	\end{split}
+    \end{equation}
+    
+    By choosing the index substitution $k=n+1$, we obtain the following representation for $C$:
+    \begin{equation}
+    \begin{split}
+		C & = \sum\limits_{n=2}^{\infty}a_{n}x^{n+1} \\
+		& = \sum\limits_{k=3}^{\infty}a_{k-1}x^{k}
+	\end{split}
+    \end{equation}
+    
+    Substituting equations $(4)$, $(5)$, and $(6)$, into $(3)$ we obtain
+    \begin{equation}
+    \begin{split}
+    	0 = & -a_{1} + a_{0}x + a_{1}x^{2} + A + B + C. \\
+    	= & -a_{1} + a_{0}x + a_{1}x^{2} + (2a_{2} + 6a_{3}x + 12a_{4}x^{2} + \sum\limits_{k=3}^{\infty}(k^{2}+3k+2)a_{k+2}x^{k}) \\
+    	& \space \space + (-2a_{2}x - 3a_{3}x^{2} + \sum\limits_{k=3}^{\infty}-(k+1)a_{k+1}x^{k}) + (\sum\limits_{k=3}^{\infty}a_{k-1}x^{k}) \\
+    	= & (2a_{2}-a_{1}) + (a_{0}+6a_{3}-2a_{2})x  + (a_{1}+12a_{4}-3a_{3})x^{2} \\
+    	& + \sum\limits_{k=3}^{\infty}[(k^{2}+3k+2)a_{k+2} -(k+1)a_{k+1} + a_{k-1}]x^{k}
+    \end{split}
+    \end{equation}
+    
+    Since the power series in equation $(7)$ is identically zero, each of the coefficients of the power series is zero:
+    \begin{equation}
+    \begin{split}
+    	0 = & 2a_{2}-a_{1} \\ 
+    	0 = & a_{0}+6a_{3}-2a_{2} \\
+    	0 = & a_{1}+12a_{4}-3a_{3} \\
+    	0 = & (k^{2}+3k+2)a_{k+2} -(k+1)a_{k+1} + a_{k-1} \quad \textrm{for}k  \quad \geq 3
+    \end{split}
+    \end{equation}
+    
+    Solving in terms of $a_{0}$ and $a_{1}$ we obtain
+    \begin{equation}
+    \begin{split}
+    	a_{2} & = \frac{a_{1}}{2} \\ 
+    	a_{3} & = \frac{a_{1}-a_{0}}{6} \\
+    	a_{4} & = \frac{-a_{1}-a_{0}}{24} \\
+    	a_{k} & = \frac{-a_{k-3}+(k-1)a_{k-1}}{k^{2}+3k+2} \quad \textrm{for} \quad k \geq 5
+    \end{split}
+    \end{equation}
+    These equations uniquely determines a power series solution in terms of two constants $a_{0}$ and $a_{1}$ as is consistent for a general solution to a second order partial differential equation.
 \end{document}
