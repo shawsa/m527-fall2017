@@ -70,7 +70,7 @@ y_1(x) & = 1 - x^2 - \frac{1}{3}x^4 - \frac{1}{5}x^6 - ... \\
 		\text{ln}\frac{1+x}{1-x} & = \text{ln}(1+x) - \text{ln}(1-x) \\
 		& = \sum\limits_{m=1}^\infty (-1)^{m+1} \frac{x^m}{m} + \sum\limits_{m=1}^\infty \frac{x^m}{m} \\
 		& = \sum\limits_{m=1}^\infty \big( (-1)^{m+1} + 1 \big) \frac{x^m}{m} \\
-		& = x + 0 + \frac{1}{3}x^3 + 0 + \frac{1}{5}x^5 + ... \\
+		& = 2x + 0 + \frac{2}{3}x^3 + 0 + \frac{2}{5}x^5 + ... \\
 		& = 2x + \frac{2}{3}x^3 + \frac{2}{5}x^5 + ... \\
 		1 - \frac{1}{2}x\text{ln}\frac{1+x}{1-x}& = 1 -x^2 - \frac{1}{3}x^4 - \frac{1}{5}x^4 + ...
 	\end{align*}
@@ -105,6 +105,51 @@ y_1(x) & = 1 - x^2 - \frac{1}{3}x^4 - \frac{1}{5}x^6 - ... \\
 	& = 0
 	\end{align*}
 	
-\problem{Section 5.2 \#11} 
+\problem{Section 5.2 \#11} Find a solution of $(a^2-x^2)\frac{d^2y}{dx^2} - 2x\frac{dy}{dx} +n(n+1)y = 0, a \neq 0$ by reduction to the Legendre equation.
+
+	First factor our differential equation as follows $$\Big(1-\Big(\frac{x}{a}\Big)^2\Big)a^2\frac{d^2y}{dx^2} - 2\frac{x}{a}a\frac{dy}{dx} +n(n+1)y = 0$$
+	Let $z = \frac{x}{a}$. Then we can compute the following differential equations
+	\begin{align*}
+		x & = az & \frac{dy}{dz} & = \frac{dx}{dz}\frac{dy}{dx}  = a\frac{dy}{dx} \\
+		\frac{dx}{dz} & = a & \frac{d^2y}{dz^2} & = \frac{d^2x}{dz^2}\frac{dy}{dx} + \Big(\frac{dx}{dz}\Big)^2 \frac{d^2y}{dx^2} = a^2 \frac{d^2y}{dx^2}\\
+		\frac{d^2x}{dz^2} & = 0 & & \\
+	\end{align*}
+	Substituting into our differential equation above we get $$(1-z^2)\frac{d^2y}{dz^2} - 2z\frac{dy}{dz} +n(n+1)y = 0$$ This is Legendre's equation so we know we can find solutions to it. Let $y_1(z), y_2(z)$ be linearly independent solutions to Legendre's equation. Then $y_1(x/a), y_2(x/a)$ are linearly independent solutions to our differential equation. specifically:
+	\begin{align*}
+		y_1(x) & = 1 - \frac{n(n+1)}{2!a^2}x^2 + \frac{(n-2)n(n+1)(n+3)}{4!a^4}x^4 - ... \\
+		y_2(x) & = \frac{1}{a}x - \frac{(n-1)(n+2)}{3!a^3}x^3 + \frac{(n-3)(n-1)(n+2)(n+4)}{5!a^5}x^5 - ...
+	\end{align*}
+	Then $y(x) = a_0y_1(x) + a_1y_2(x)$ is a solution to our differential equation at least on $-\vert a \vert <x< \vert a \vert$.
+	
+\problem{Section 5.2 \#11} In class we defined $y_1(x)$ and $y_2(x)$ Determine for what values of $x$ they each converge.
+	\begin{align*}
+		y_1(x) & = y_1(x) = 1 - \frac{n(n+1)}{2!}x^2 + \frac{(n-2)n(n+1)(n+3)}{4!}x^4 - ... \\
+		y_1(x) & = 1 + \sum\limits_{m=1}^\infty \Bigg(\prod\limits_{k=0}^{m-1}n-2k \Bigg) \Bigg(\prod\limits_{k=0}^{m-1}n+2k+1 \Bigg) \frac{(-1)^{m}}{(2m)!}x^{2m} \\
+		y_2(x) & = x - \frac{(n-1)(n+2)}{3!}x^3 + \frac{(n-3)(n-1)(n+2)(n+4)}{5!}x^5 - ... \\
+		y_2(x) & = x + \sum\limits_{m=1}^\infty \Bigg(\prod\limits_{k=0}^{m-1}n-2k-1 \Bigg) \Bigg(\prod\limits_{k=0}^{m-1}n+2k+2 \Bigg) \frac{(-1)^{m}}{(2m+1)!}x^{2m+1}
+	\end{align*}
+	In class we discussed that when $n$ is a positive even (zero included) integer or a negative odd integer, $y_1$ reduces to a polynomial and converges for all $x \in \mathbb{R}$. Similarly when $n$ is a negative non-zero even integer or a positive odd integer, $y_2$ reduces to a polynomial and is convergent for all $x \in \mathbb{R}$.
+	
+	We will use the ratio test to check for convergence of $y_1$.
+	\begin{align*}
+		\lim\limits_{m \to \infty} & \Bigg\vert \frac{\Bigg(\prod\limits_{k=0}^{m+1-1}n-2k \Bigg) \Bigg(\prod\limits_{k=0}^{m+1-1}n+2k+1 \Bigg) \frac{(-1)^{m+1}}{(2(m+1))!}x^{2(m+1)}}{\Bigg(\prod\limits_{k=0}^{m-1}n-2k \Bigg) \Bigg(\prod\limits_{k=0}^{m-1}n+2k+1 \Bigg) \frac{(-1)^{m}}{(2m)!}x^{2m}} \Bigg\vert \\
+		& = \lim\limits_{m \to \infty} \vert (n-2m) (n+2m+1) \frac{(-1)}{(2m+2)(2m+1)}x^{2} \vert \\
+		& = x^2 \lim\limits_{m \to \infty} \Big\vert \frac{n^2 - 4m^2 + n -2m}{4m^2+6m+2)} \Big\vert \\
+		& = x^2 \lim\limits_{m \to \infty} \Big\vert \frac{\frac{n^2}{4m^2} - 1 + \frac{n}{4m^2} -\frac{1}{2m}}{1+\frac{3}{2m}+\frac{1}{2m^2}} \Big\vert \\
+		& = x^2
+	\end{align*}
+	Hence $y_1$ converges when $x^2<1$ or equivalently when $-1 < x < 1$. A quick check shows that when $x= \pm 1$ the series diverges because the numerators grow faster than the denominators. \bigbreak
+	
+	We will use the ratio test to check for convergence of $y_2$.
+	\begin{align*}
+		\lim\limits_{m \to \infty} & \Bigg\vert \frac{\Bigg(\prod\limits_{k=0}^{m+1-1}n-2k-1 \Bigg) \Bigg(\prod\limits_{k=0}^{m+1-1}n+2k+2 \Bigg) \frac{(-1)^{m+1}}{(2(m+1)+1)!}x^{2(m+1)+1}}{\Bigg(\prod\limits_{k=0}^{m-1}n-2k-1 \Bigg) \Bigg(\prod\limits_{k=0}^{m-1}n+2k+2 \Bigg) \frac{(-1)^{m}}{(2m+1)!}x^{2m+1}} \Bigg\vert \\
+		& = \lim\limits_{m \to \infty} \Bigg\vert (n-2m-1)(n+2m+2) \frac{(-1)}{(2m+3)(2m+2)}x^{2} \Bigg\vert \\
+		& = x^2 \lim\limits_{m \to \infty} \Bigg\vert \frac{n^2 - 4m^2 + n -6m -2}{4m^2+10m+6} \Bigg\vert \\
+		& = x^2 \lim\limits_{m \to \infty} \Bigg\vert \frac{\frac{n^2}{4m^2} - 1 + \frac{n}{4m^2} -\frac{3}{2m} -\frac{2}{4m^2}}{1+\frac{5}{2m}+\frac{3}{2m}} \Bigg\vert \\
+		& = x^2
+	\end{align*}
+	Hence $y_2$ converges when $x^2<1$ or equivalently when $-1 < x < 1$. A quick check shows that when $x= \pm 1$ the series diverges because the numerators grow faster than the denominators.\bigbreak
+	
+	To summarize our results, $y_1$ is convergent when $-1<x<1$, and when $n$ is zero, a positive even integer, or a negative odd integer; and $y_2$ is convergent when $-1<x<1$, and when $n$ is a non-zero negative even integer, or a positive odd integer. \\
 
 \end{document}
