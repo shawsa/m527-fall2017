@@ -78,6 +78,50 @@ y^{\prime\prime} + (e^{-2x}-\frac{1}{9})y = 0
 		\label{tbl:table_of_figures}
 	\end{table} 
 	
-\problem{\#16} 
+\problem{\#16} Show that $y-uv$ with $v(x)=e^{-\frac{1}{2}\int p(x)dx}$ and the ODE \\$y^{\prime\prime} + p(x)y^\prime + q(x)y=0$ gives the ODE $$u^{\prime\prime} + \Big[q(x) - \frac{1}{4}p(x)^2 - \frac{1}{2}p^\prime(x) \Big]u = 0$$
+
+	Note that $v^\prime = e^{-\frac{1}{2}\int p dx} (-\frac{1}{2})p = -\frac{1}{2}pv$. Then we can derive the following
+	\begin{align*}
+		y^\prime & = u^\prime v + -\frac{1}{2}pvu \\
+		y^{\prime\prime} & = u^{\prime\prime} v - \frac{1}{2}pvu^\prime -\frac{1}{2}p^\prime uv -\frac{1}{2}p u^\prime v - \frac{1}{4}p^2 u v\\
+	\end{align*}
+	Substituting into our ODE we have
+	\begin{align*}
+		u^{\prime\prime} v - \frac{1}{2}pvu^\prime -\frac{1}{2}p^\prime uv -\frac{1}{2}p u^\prime v + \frac{1}{4}p^2 u v + p(u^\prime v + -\frac{1}{2}pvu) + quv & = 0 \\
+		v \Big(u^{\prime\prime} - \frac{1}{2}pu^\prime -\frac{1}{2}p^\prime u -\frac{1}{2}p u^\prime + \frac{1}{4}p^2 u + p(u^\prime + -\frac{1}{2}pu) + qu \Big) & = 0 \\
+		v \Big(u^{\prime\prime} -\frac{1}{2}p^\prime u - p u^\prime + \frac{1}{4}p^2 u + pu^\prime + -\frac{1}{2}p^2u) + qu \Big) & = 0 \\
+		v \Big(u^{\prime\prime} -\frac{1}{2}p^\prime u - \frac{1}{4}p^2 u + qu \Big) & = 0 \\
+		v \Big(u^{\prime\prime} + \Big[ q  - \frac{1}{4}p^2 - \frac{1}{2}p^\prime \Big]u \Big) & = 0
+	\end{align*}
+	Since $v(x)=e^{-\frac{1}{2}\int p(x)dx} \neq 0$ we arrive at our desired ODE
+	$$
+	u^{\prime\prime} + \Big[ q  - \frac{1}{4}p^2 - \frac{1}{2}p^\prime \Big]u = 0
+	$$
+	
+\problem{\#17} Show that for Bessel's equation, the substitution in problem 16 is $y=ux^{-1/2}$ and gives $$x^2u^{\prime\prime} + (x^2 + \frac{1}{4} - v^2)u=0$$
+
+	Consider Bessel's equation $x^2y^{\prime\prime} + xy^\prime + (x^2-v^2)y = 0$. Dividing by $x^2$ we can put this in the form of the ODE in problem 16
+	$$
+	y^{\prime\prime} + x^{-1}y^\prime + \Big(1-\frac{v^2}{x^2} \Big)y = 0
+	$$
+	Let $q(x) = 1-\frac{v^2}{x^2}$ and $p(x) = x^{-1}$. Then let
+	\begin{align*}
+		\xi(x) = e^{-\frac{1}{2}\int p(x)dx} & = e^{-\frac{1}{2}\int x^{-1}dx} \\
+		& = e^{-\frac{1}{2}ln(x)} \\
+		& = e^{ln(x^{-\frac{1}{2}})} \\
+		& = x^{-\frac{1}{2}}
+	\end{align*}
+	Note also that
+	\begin{align*}
+		p(x)^2 & = x^{-2} \\
+		p^\prime(x) & = -x^{-2}
+	\end{align*}
+	Letting $y = u\xi$ we can substitute into our ODE as in problem 16 to obtain
+	\begin{align*}
+		u^{\prime\prime} + \Big[ q  - \frac{1}{4}p^2 - \frac{1}{2}p^\prime \Big]u  & = 0 \\
+		u^{\prime\prime} + \Big[ \Big(1-\frac{v^2}{x^2} \Big)  - \frac{1}{4}x^{-2} + \frac{1}{2}x^{-2} \Big]u  & = 0 \\
+		u^{\prime\prime} + \Big[ \Big(1-\frac{v^2}{x^2} \Big)  + \frac{1}{4}x^{-2} \Big]u  & = 0 \\
+		x^2u^{\prime\prime} + \Big(x^2-v^2 + \frac{1}{4} \Big)u  & = 0 \\
+	\end{align*}
 
 \end{document}
