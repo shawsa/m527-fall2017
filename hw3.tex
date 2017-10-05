@@ -123,5 +123,91 @@ y^{\prime\prime} + (e^{-2x}-\frac{1}{9})y = 0
 		u^{\prime\prime} + \Big[ \Big(1-\frac{v^2}{x^2} \Big)  + \frac{1}{4}x^{-2} \Big]u  & = 0 \\
 		x^2u^{\prime\prime} + \Big(x^2-v^2 + \frac{1}{4} \Big)u  & = 0 \\
 	\end{align*}
+	
+\problem{\#20}Derive Bessel's Equation from the 4 properties in equation (21) from the text.
+	
+	We would like to derive Bessel's equation (alternate form) 
+	$$
+	y^{\prime\prime} + x^{-1}y^\prime + \Big(1-\big(\tfrac{v}{x}\big)^2\Big) y = 0
+	$$
+	using the properties
+	\begin{align}
+		\Big[x^vJ_v(x)\Big]^\prime & = x^vJ_{v-1}(x) \tag{a}\\
+		\Big[x^{-v}J_{-v}(x)\Big]^\prime & = -x^{-v}J_{v+1}(x)	\tag{b} \\
+		\tfrac{2v}{x}J_v & = J_	{v-1} + J_	{v+1} \tag{c} \\
+		2J_v^\prime & = J_{v-1} - J_{v+1} \tag{d}
+	\end{align}
+	From (a) we can derive $J_v^{\prime\prime}$ as follows
+	\begin{align*}
+		J_v^{\prime\prime} & = \tfrac{1}{2}\big(J_{v-1} - J_{v+1}\big)^\prime \\
+		J_v^{\prime\prime} & = \tfrac{1}{2} J_{v-1}^\prime - \tfrac{1}{2} J_{v+1}^\prime \\
+		& = \tfrac{1}{2} \tfrac{1}{2}\big(J_{v-2} - J_{v}\big) - \tfrac{1}{2} \tfrac{1}{2}\big(J_{v} - J_{v+2}\big) \\
+		& = \tfrac{1}{4} \big(J_{v-2} - 2J_v + J_{v+2}\big)
+	\end{align*}
+	For the second term in Bessel's equation we simplify as follows
+	\begin{align*}
+		x^{-1}J_v & = \tfrac{1}{2x} (J_{v-1} - J_{v+1}) \\
+		& = \tfrac{1}{4v} \tfrac{2v}{x}(J_{v-1} - J_{v+1}) \\
+		& = \tfrac{1}{4v} (J_{v-2} + J_v -J_v - J_{v+2}) \\
+		& = \tfrac{1}{4v} (J_{v-2} - J_{v+2})
+	\end{align*}
+	
+	The last term can be simplified as follows
+	\begin{align*}
+		-(\tfrac{v}{x} )^2J_v & = - \tfrac{1}{4} (\tfrac{2v}{x} )^2J_v \\
+		& = - \tfrac{1}{4} (\tfrac{2v}{x})(J_{v-1} + J_v{v+1}) \\
+		& = - \tfrac{1}{4} (J_{v-2} + J_{v} + J_{v} + J_v{v+2}) \\
+		& = - \tfrac{1}{4} (J_{v-2} + 2J_{v}+ J_{v+2})
+	\end{align*}
+	
+	Finally we are ready to simplify Bessel's equation
+	\begin{align*}
+		y^{\prime\prime} & + x^{-1}y^\prime + \Big(1-\big(\tfrac{v}{x}\big)^2\Big) y = \\
+		& = \tfrac{1}{4} \big(J_{v-2} - 2J_v + J_{v+2}\big) + \tfrac{1}{4v} (J_{v-2} - J_{v+2}) + J_v - \tfrac{1}{4} (J_{v-2} + 2J_{v}+ J_{v+2}) \\
+		& = \tfrac{1}{4}(-4J_{v-2}) + J_v + \tfrac{1}{4v} (J_{v-2} - J_{v+2}) \\
+		& = \tfrac{1}{4v} (J_{v-2} - J_{v+2})
+	\end{align*}
+	
+	However, a few calculations easily show this is not identically zero. There must an error somewhere.
+	
+	\bigbreak
+	\textbf{not finished}
+
+\large{\textbf{Section 5.4}}\\
+\problem{\#4} Find a general solution to $\frac{d^2y}{dx^2} + xy = 0$ in terms of $J_v$ and $Y_v$. Indicate whether you could also use $J_{-v}$ instead of $Y_v$. Use the substitutions \\$y = ux^{1/2}, \frac{2}{3}x^{3/2}=z$. \bigbreak
+
+	From $y = ux^{1/2}$, we obtain the following substitutions
+	\begin{align*}
+		\frac{dy}{dx} & = x^{\frac{1}{2}}\frac{du}{dx} + \tfrac{1}{2}x^{-\frac{1}{2}}u \\
+		\frac{d^2y}{dx^2} & = x^{\frac{1}{2}}\frac{d^2u}{dx^2} + \tfrac{1}{2}x^{-\frac{1}{2}}\frac{du}{dx} - \tfrac{1}{4}x^{-\frac{3}{2}}u + \tfrac{1}{2}x^{-\frac{1}{2}}\frac{du}{dx} \\
+		& = x^{\frac{1}{2}}\frac{d^2u}{dx^2} + x^{-\frac{1}{2}}\frac{du}{dx} - \tfrac{1}{4}x^{-\frac{3}{2}}u
+	\end{align*}
+	Substituting into $\frac{d^2y}{dx^2} + xy =  0$ we obtain
+	\begin{align}
+		x^{\frac{1}{2}}\frac{d^2u}{dx^2} + x^{-\frac{1}{2}}\frac{du}{dx} - \tfrac{1}{4}x^{-\frac{3}{2}}u + xux^{1/2} & =  0 \nonumber \\
+		x^{\frac{1}{2}}\frac{d^2u}{dx^2} + x^{-\frac{1}{2}}\frac{du}{dx} - \tfrac{1}{4}x^{-\frac{3}{2}}u + ux^{3/2} & =  0 \nonumber \\
+		x^2\frac{d^2u}{dx^2} + x\frac{du}{dx} - \tfrac{1}{4}u + ux^3 & =  0 \nonumber  \\
+		x^2\frac{d^2u}{dx^2} + x\frac{du}{dx} + \big(x^3 - \tfrac{1}{4}\big)u & = 0 \label{p4eq1}
+	\end{align}
+	From $\frac{2}{3}x^{3/2}=z$ we obtain the following equations
+	\begin{align}
+		x^\frac{3}{2} = & \tfrac{3}{2}z  &  \frac{dz}{dx} & = x^\frac{1}{2}   \nonumber \\
+		x^3 = & \big(\tfrac{3}{2}\big)^2z^2  & \frac{d^2z}{dx^2} & = \tfrac{1}{2}x^{-\frac{1}{2}}  \nonumber \\
+		\frac{du}{dx} & = x^\frac{1}{2}\frac{du}{dz}  &  \frac{d^2u}{dx^2} & = \tfrac{1}{2}x^{-\frac{1}{2}}\frac{du}{dz} + x\frac{d^2u}{dz^2} \nonumber
+	\end{align}
+	Substituting these into (\ref{p4eq1}) we obtain
+	\begin{align}
+		x^2\frac{d^2u}{dx^2} + x\frac{du}{dx} + \big(x^3 - \tfrac{1}{4}\big)u & = 0 \nonumber \\
+		x^2\Big( \frac{1}{2}x^{-\frac{1}{2}}\frac{du}{dz} + x\frac{d^2u}{dz^2} \Big) + x \Big( x^\frac{1}{2}\frac{du}{dz} \Big) + \big(x^3 - \tfrac{1}{4}\big)u & =  0 \nonumber  \\
+		\tfrac{1}{2}x^{\frac{3}{2}}\frac{du}{dz} + x^3\frac{d^2u}{dz^2} + x^\frac{3}{2}\frac{du}{dz} + \big(x^3 - \tfrac{1}{4}\big)u & =  0 \nonumber  \\
+		x^3\frac{d^2u}{dz^2} + \frac{3}{2}x^{\frac{3}{2}}\frac{du}{dz} + \big(x^3 - \tfrac{1}{4}\big)u & =  0 \nonumber  \\
+		\big(\tfrac{3}{2}\big)^2z^2\frac{d^2u}{dz^2} + \tfrac{3}{2}\tfrac{3}{2}z\frac{du}{dz} + \Big(\big(\tfrac{3}{2}\big)^2z^2 - \tfrac{1}{4}\Big)u & =  0 \nonumber  \\
+		z^2\frac{d^2u}{dz^2} + z\frac{du}{dz} + \big(z^2 - \tfrac{1}{9}\big)u & =  0 \label{p4eq2}
+	\end{align}
+	This is Bessel's Equation with $v=\frac{1}{3} \notin \mathbb{Z}$. Thus $u= C_1J_{1/3}(z) + C_2J_{-1/3}(z)$ is a general solution to (\ref{p4eq2}). Subtituting we obtain a general solution to our original ODE
+	$$
+	y= x^{-\frac{1}{2}} \Bigg[ J_{1/3} C_1 \Big(\tfrac{2}{3}x^{3/2}\Big) + C_2 J_{-1/3}\Big(\tfrac{2}{3}x^{3/2}\Big) \Bigg]
+	$$
+	
 
 \end{document}
