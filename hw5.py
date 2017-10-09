@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib2tikz import save as tikz_save
 
 
 curve_color = 'b'
@@ -25,7 +26,7 @@ plt.plot(xs, ys, curve_color+'-', linewidth=curve_size)
 plt.plot( [5], [0], curve_color+'^', ms=orientation_size)
 plt.plot( [-5], [0], curve_color+'v', ms=orientation_size)
 
-plt.xlim( (-7.5, 7.5) )
+plt.xlim( (-8.5, 8.5) )
 plt.ylim( (-7.5, 7.5) )
 
 #arrows
@@ -34,4 +35,7 @@ for x, y in zip(xs[::50], ys[::50]):
     plt.arrow(x,y,dx,dy, shape='full', lw=2, length_includes_head=True, head_width=.1, color='r')
 
 #plt.savefig('hw5_figure_1.png')
-plt.show()
+#plt.show()
+
+
+tikz_save('hw5_figure_1.tex')
