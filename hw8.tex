@@ -122,7 +122,7 @@
 		u_{xx}(L,t) & = 0 \label{bc4} \\
 		u_t(x,0) & = 0 \label{ic1}
 	\end{align}
-	Substituting (\ref{bc1}) into (\ref{eq3}) we have $0 = u(0,t) = F(0)*G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
+	Substituting (\ref{bc1}) into (\ref{eq3}) we have $0 = u(0,t) = F(0)G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
 	\begin{align*}
 		0 & = F(0) \\
 		0 & = A \cos(\beta 0) + B \sin(\beta 0) + C \cosh(\beta 0) + D \sinh(\beta 0) \\
@@ -130,9 +130,9 @@
 	\end{align*}
 	We then have that $F$ has the form
 	\begin{align}
-		F(x) = A \cos(\beta x) + B \sin(\beta x) - A \cosh(\beta x) + D \sinh(\beta x) \label{eq5}
+		F(x) = A \cos(\beta x) + B \sin(\beta x) - A \cosh(\beta x) + D \sinh(\beta x) \label{eq10}
 	\end{align}
-	Substituting (\ref{bc3}) into (\ref{eq5}) we have $0 = u_{xx}(0,t) = F^{\prime\prime}(0)*G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
+	Substituting (\ref{bc3}) into (\ref{eq10}) we have $0 = u_{xx}(0,t) = F^{\prime\prime}(0)G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
 	\begin{align*}
 		0 & = F^{\prime\prime}(0) \\
 		0 & = -A \beta^2\cos(\beta 0) - B \beta^2 \sin(\beta 0) -A \beta^2 \cosh(\beta 0) + D \beta^2 \sinh(\beta 0) \\
@@ -141,7 +141,49 @@
 	\end{align*}
 	We then have that $F$ has the form
 	\begin{align}
-		F(x) = B \sin(\beta x) + D \sinh(\beta x) \label{eq6}
+		F(x) = B \sin(\beta x) + D \sinh(\beta x) \label{eq11}
 	\end{align} 
+	
+	Substituting (\ref{bc2}) into (\ref{eq11}) we have $0 = u(L,t) = F(L)G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
+	\begin{align}
+		0 & = F(L) \nonumber \\
+		0 & = B \sin(\beta L) + D \sinh(\beta L) \label{eq12}
+	\end{align}
+	Similarly substituting (\ref{bc4}) into (\ref{eq11}) we have $0 = u_{xx}(L,t) = F^{\prime\prime}(L)G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
+	\begin{align}
+	0 & = F^{\prime\prime}(L) \nonumber \\
+	0 & = -B \beta^2\sin(\beta L) + D \beta^2\sinh(\beta L) \nonumber \\
+	0 & = -B \sin(\beta L) + D \sinh(\beta L) \label{eq13}
+	\end{align}
+	Adding (\ref{eq12}) and (\ref{eq13}) we get that $0=2D \sinh (\beta L)$ and since $\beta L \neq 0$ we know that $D=0$. Lastly we subtract (\ref{eq12}) and (\ref{eq13}) (and substitute $D=0$) to get $ 0 = 2B \sin(\beta L)$. If $B=0$ we would have the trivial solution, so we will assume that $B \neq 0$. Then we have that $0 = \sin(\beta L)$ and thus $\beta = \tfrac{n\pi}{L}$ for $n \in \ZZ$. Note that since $\beta L \neq 0$. Also since $\sin(\tfrac{-n\pi}{L}) = -1\sin(\tfrac{n\pi}{L})$ we know that each $\sin(\tfrac{n\pi}{L})$ for $n \in \ZZ^-$ is linearly dependent with $\sin(\tfrac{n\pi}{L})$ for $n \in \ZZ^+$. \bigbreak
+	
+	Thus the set of functions
+	\begin{align}
+		F_n(x) = \sin(\tfrac{n\pi}{L}x) \label{eq14}
+	\end{align}
+	forms a basis for solutions of (\ref{eq1}) that satisfy the BC (\ref{bc1}) through (\ref{bc4}). \bigbreak
+	
+	Applying the initial condition (\ref{ic1}) to (\ref{eq4}) we get $u_t(x,0) = F(x)G^\prime(0)$ and assuming that $F(x) \neq 0$ for all values of $x$, we get that 
+	\begin{align*}
+		0 & = G^\prime(0) \\
+		& = -a c \beta^2 \sin(c \beta^2 0) + b c \beta^2 \cos(c \beta^2 0) \\
+		& = b c \beta^2 \\
+		& = b
+	\end{align*}
+	Thus $G$ is of the form
+	\begin{align}
+		G(t) = a \cos(c \beta^2 t)
+	\end{align}
+	
+	Substituting our criteria on $\beta$ from before we have that
+	$$
+		u_n(x,t) = \sin(\tfrac{n\pi}{L}x) \cos(\tfrac{cn^2 \pi^2}{L^2}t)
+	$$
+	Form a basis for solutions to our PDE with the given boundary conditions and initial condition.
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{20 from the book}
+	
+	If we assume that $\cosh(\beta L) \cos(\beta L) = -1$ we can use any root finding method on $\cosh(\beta L) \cos(\beta L) +1 = 0$ to find an approximate value for $\beta L$. Using the secant method I calculate that $\beta L \approx 1.8751040687119611$ is accurate to within an error of $1e-15$. 
 	
 \end{document}
