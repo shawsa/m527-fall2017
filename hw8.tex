@@ -94,8 +94,54 @@
 	$$
 	We assume that a solution is of the form $u(x,t) = F(x)G(t)$, then we have $F(x)G^{\prime\prime}(t) = -c^2 F^{(4)}(x)G(t)$ and
 	$$
-	\frac{F(x)}{-c^2 F^{(4)}(x)} = \frac{G^{\prime\prime}(t)}{G(t)} = \beta^4
+	\frac{G^{\prime\prime}(t)}{-c^2 G(t)} = \frac{F^{(4)}(x)}{F(x)} = \beta^4
 	$$
-	for some constant $\beta$. This is because each side of the equation is equal for every value of $x$ and every value of $t$. Then we have that $F^{(4)}- \beta^4F = 0$ and $G$
+	for some constant $\beta$. This is because each side of the equation is equal for every value of $x$ and every value of $t$. Then we have that
+	\begin{align}
+		F^{(4)}- \beta^4F & = 0 \label{eq1} \\
+		G^{\prime\prime}+ c^2\beta^4G & = 0 \label{eq2}
+	\end{align}
+	both ordinary differential equations. Suppose that a solution of (\ref{eq1}) is of the form $F(x) = e^{rx}$. Then substituting into (\ref{eq1}) we get $r^4e^{rx} - \beta^4e^{rx} = 0$, and $(r^4-\beta^4)e^{rx}=0$. Since $e^{rx} \neq 0$ we have that $r^4-\beta^4=0$ and that $r = \pm \beta, \pm i\beta$. These roots of the indical equation tell us that $\sinh(\beta x), \cosh(\beta x), \sin(\beta x),$ and $\cos(\beta x)$ are all solutions to (\ref{eq1}). Since they are linearly independent we know that the general solution of (\ref{eq1}) is
+	\begin{align}
+		F(x) = A \cos(\beta x) + B \sin(\beta x) + C \cosh(\beta x) + D \sinh(\beta x) \label{eq3}
+	\end{align}
+	These conditions however place no restrictions on $\beta$. Intuitively we expect that if a beam experiences bending, or displacement, that the natrual reaction of the beam will be to return to it's unbent state. We would expect then that $\beta^4$ in (\ref{eq2}) is a positive value (i.e. $G$ and $G^{\prime\prime}$ are in opposite directions). Thus
+	\begin{align}
+		G(t) = a\cos(c\beta^2 t) + b\sin(c\beta^2 t) \label{eq4}
+	\end{align}
+	is a general solution to (\ref{eq2}).
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{16 from the book}
 
+	We are given the following boundary and initial conditions
+	\begin{align}
+		u(0,t) & = 0 \label{bc1} \\
+		u(L,t) & = 0 \label{bc2} \\
+		u_{xx}(0,t) & = 0 \label{bc3} \\
+		u_{xx}(L,t) & = 0 \label{bc4} \\
+		u_t(x,0) & = 0 \label{ic1}
+	\end{align}
+	Substituting (\ref{bc1}) into (\ref{eq3}) we have $0 = u(0,t) = F(0)*G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
+	\begin{align*}
+		0 & = F(0) \\
+		0 & = A \cos(\beta 0) + B \sin(\beta 0) + C \cosh(\beta 0) + D \sinh(\beta 0) \\
+		0 & = A + C
+	\end{align*}
+	We then have that $F$ has the form
+	\begin{align}
+		F(x) = A \cos(\beta x) + B \sin(\beta x) - A \cosh(\beta x) + D \sinh(\beta x) \label{eq5}
+	\end{align}
+	Substituting (\ref{bc3}) into (\ref{eq5}) we have $0 = u_{xx}(0,t) = F^{\prime\prime}(0)*G(t)$. Assuming that $G(t) \neq 0$ at all values of $t$, we have
+	\begin{align*}
+		0 & = F^{\prime\prime}(0) \\
+		0 & = -A \beta^2\cos(\beta 0) - B \beta^2 \sin(\beta 0) -A \beta^2 \cosh(\beta 0) + D \beta^2 \sinh(\beta 0) \\
+		0 & = -A \beta^2 -A \beta^2 \\
+		0 & = A
+	\end{align*}
+	We then have that $F$ has the form
+	\begin{align}
+		F(x) = B \sin(\beta x) + D \sinh(\beta x) \label{eq6}
+	\end{align} 
+	
 \end{document}
