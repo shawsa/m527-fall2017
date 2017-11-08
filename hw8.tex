@@ -183,7 +183,86 @@
 	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \problem{20 from the book}
+
+	Let $F(x)$ be of the form in (\ref{eq3}). Additionally suppose the following boundary conditions
+	\begin{align}
+		u(0,t) &= 0 & \implies & & F(0) &= 0 \label{bc16}\\
+		u_x(0,t) &= 0 & \implies & & F^\prime(0) &= 0 \label{bc17}\\
+		u_{xx}(0,t) &= 0 & \implies & & F^{\prime\prime}(0) &= 0 \label{bc18}\\
+		u_{xxx}(0,t) &= 0 & \implies & & F^{\prime\prime\prime}(0) &= 0 \label{bc19}
+	\end{align}
+	The conditions on the right follow since we assume that $G(t) \neq 0$.
+	
+	Then from (\ref{eq3}) and (\ref{bc16}) we have
+	\begin{align*}
+		0 &= F(0) \\
+		& = A \cos(\beta 0) + B \sin(\beta 0) + C \cosh(\beta 0) + D \sinh(\beta 0) \\
+		& = A + C \\
+		-A & = C
+	\end{align*}
+	Then from (\ref{eq3}) and (\ref{bc17}) we have
+	\begin{align*}
+		0 &= F^\prime(0) \\
+		& = -A \beta \sin(\beta 0) + B \beta \cos(\beta 0) + C \beta \sinh(\beta 0) + D \beta \cosh(\beta 0) \\
+		& = B \beta + D \beta \\
+		-B & = D
+	\end{align*}
+	Now we know that $F$ is in the form
+	\begin{align}
+		F(x) = A \cos(\beta x) + B \sin(\beta x) - A \cosh(\beta x) - B \sinh(\beta x) \label{eq20}
+	\end{align}
+	From (\ref{eq20}) and (\ref{bc18}) we have
+	\begin{align}
+		0 &= F^{\prime\prime}(L) \nonumber \\
+		& = -A \beta^2 \cos(\beta L) - B \beta^2 \sin(\beta L) - A \beta^2 \cosh(\beta L) - B \beta^2 \sinh(\beta L) \nonumber \\
+		& = -\beta^2 \big[  (\cos(\beta L) + \cosh(\beta L))A + (\sin(\beta L) + \sinh(\beta L))B  \big] \nonumber \\
+		0 & = (\cos(\beta L) + \cosh(\beta L))A + (\sinh(\beta L) + \sin(\beta L))B \label{eq21}
+	\end{align}
+	And from (\ref{eq20}) and (\ref{bc19}) we have
+	\begin{align}
+		0 &= F^{\prime\prime\prime}(L) \nonumber \\
+		& = A \beta^3 \sin(\beta L) - B \beta^3 \cos(\beta L) - A \beta^3 \sinh(\beta L) - B \beta^3 \cosh(\beta L) \nonumber \\
+		& = -\beta^3 \big[  ( -\sin(\beta L) + \sinh(\beta L))A + (\cos(\beta L) + \cosh(\beta L))B  \big] \nonumber \\
+		0 & = (\sinh(\beta L) - \sin(\beta L))A + (\cos(\beta L) + \cosh(\beta L))B \label{eq22}
+	\end{align}
+	Equations (\ref{eq21}) and (\ref{eq22}) are two linear equations of two variables that can be written as the following matrix equation
+	\begin{align}
+		\begin{bmatrix}
+		\cos(\beta L) + \cosh(\beta L) & \sinh(\beta L) + \sin(\beta L)\\
+		\sinh(\beta L) - \sin(\beta L) & \cos(\beta L) + \cosh(\beta L)\\
+		\end{bmatrix}
+		\begin{bmatrix}
+		A \\
+		B\\
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+		0 \\
+		0\\
+		\end{bmatrix} \label{eq23}
+	\end{align}
+	We are interested in nontrivial solutions of (\ref{eq23}). That would mean that the matrix maps a nonzero vector to the zero vector. This can only happen when the determinant of the matrix is zero which leads us to our final result
+	\begin{align*}
+		0 & = (\cos(\beta L) + \cosh(\beta L))^2 - (\sinh(\beta L) - \sin(\beta L))(\sinh(\beta L) + \sin(\beta L)) \\
+		0 & = \cos^2(\beta L) + 2\cos(\beta L)\cosh(\beta L) + \cosh^2(\beta L) - \sinh^2(\beta L) + \sin^2(\beta L) \\
+		0 & = 2\cos(\beta L)\cosh(\beta L) + \cos^2(\beta L) + \sin^2(\beta L) + \cosh^2(\beta L) - \sinh^2(\beta L) \\
+		0 & = 2\cos(\beta L)\cosh(\beta L) + 1 + 1 \\ 
+		-1 & = \cos(\beta L)\cosh(\beta L)
+	\end{align*}
 	
 	If we assume that $\cosh(\beta L) \cos(\beta L) = -1$ we can use any root finding method on $\cosh(\beta L) \cos(\beta L) +1 = 0$ to find an approximate value for $\beta L$. Using the secant method I calculate that $\beta L \approx 1.8751040687119611$ is accurate to within an error of $10^{-15}$. 
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{2}
+
+	Given that $f(x)$ is the initial height of the guitar string as a function of $x$ the distance along the fretboard of the guitar, that passes through the points $(0,0), (0,L)$ and $(a,b)$ where $0 < a < L$ and some number $b$, we will assume that $f$ is a peicewise linear function passing through these points. Then using the point-slope formula, $f$ is given by
+	
+	$$
+	f(x) =
+	\begin{cases}
+	\frac{b}{a}x & \text{ if } 0 \leq x \leq a \\
+	\frac{0-b}{L-a}(x-L) & \text{ if } a \leq x \leq L \\
+	\end{cases}
+	$$
 	
 \end{document}
