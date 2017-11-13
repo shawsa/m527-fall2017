@@ -1,0 +1,180 @@
+\documentclass[12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Math
+\usepackage{fancyhdr} 
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage{dsfont}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+\usepackage{calc}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands and Custom Variables	
+\newcommand{\problem}[1]{\hspace{-4 ex} \large \textbf{Problem #1} }
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\sint}{\text{s}\kern-5pt\int}
+\newcommand{\powerset}{\mathcal{P}}
+\renewenvironment{proof}{\hspace{-4 ex} \emph{Proof}:}{\qed}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%page
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+%\doublespacing
+\allowdisplaybreaks
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Shaw \space \thepage}
+\setlength\parindent{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Code
+\usepackage{listings}
+\usepackage{courier}
+\lstset{
+	language=Python,
+	showstringspaces=false,
+	formfeed=newpage,
+	tabsize=4,
+	commentstyle=\itshape,
+	basicstyle=\ttfamily,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Images
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{float}
+
+%tikz
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Hyperlinks
+%\usepackage{hyperref}
+%\hypersetup{
+%	colorlinks=true,
+%	linkcolor=blue,
+%	filecolor=magenta,      
+%	urlcolor=cyan,
+%}
+
+\begin{document}
+	\thispagestyle{empty}
+	
+	\begin{flushright}
+		Sage Shaw \\
+		m527 - Fall 2017 \\
+		\today
+	\end{flushright}
+	
+{\large \textbf{HW 9}}\bigbreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{\#2 from Sec 12.4}
+
+	Show that the boundary conditions
+	\begin{align}
+		u(0,t) &= 0 & u(L,t) &= 0 \label{BC}
+	\end{align}
+	and the result of D'lambert's solution
+	\begin{align}
+		u(x,t) = \tfrac{1}{2}[f(x+ct)+f(x-ct)] \label{eq13}
+	\end{align}
+	requre that $f$ is odd and has period $2L$. \bigbreak
+	
+	\begin{proof}
+		First substitute $u(0,t)=0$ into (\ref{BC}) to obtain $0 = \tfrac{1}{2}[f(ct)+f(-ct)]$. Then $f(-ct) = -f(ct)$ for any $ct$ and thus $f$ is odd. Next substitute $u(0,t)=0$ into (\ref{BC}) to obtain $0 = \tfrac{1}{2}[f(L+ct)+f(L-ct)]$. Rearanging we have
+		\begin{align*}
+			f(L+ct) &= -f(L-ct) \\
+			f(ct+L) &= f\big(-(L-ct)\big) \text{\ \ \ \ since $f$ is odd} \\
+			f(ct+L) &= f(ct-L)
+		\end{align*}
+		With the change of variables $ct = x+L$ we have
+		$$
+		f(x+2L) = f(x)
+		$$
+		and thus $f$ has period $2L$.
+	\end{proof} \bigbreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{\#16 from Sec 12.6: A bar with heat generation}of constant rate $H>0$ is modeled by $u_t = c^2u_{xx} + H$. Solve this problem if $L=\pi$ and the ends of the bar are kept at $0^\circ$C. \bigbreak
+
+	First define $v(x,t)$ such that $u = v - Hx(x-\pi)/(2c^2)$. Then $v_t = u_t$ and
+	\begin{align*}
+		u_x & = v_x - H(2x-\pi)/(2c^2) \\
+		u_xx & = v_{xx} - 2H/(2c^2)\\
+		& = v_{xx} - \tfrac{H}{c^2}
+	\end{align*}
+	Substituting into our differential equation we obtain
+	\begin{align*}
+		u_t & = c^2u_{xx} + H \\
+		v_t = c^2(v_{xx} - \tfrac{H}{c^2}) + H \\
+		v_t = c^2v_{xx}\\
+	\end{align*}
+	Also $0 = u(0,t)$ implies that $v(0,t) = 0$ and $0 = u(L,t)$ implies that $v(L,t) = 0$. From earlier we know that 
+	$$
+	v(x,t) = \sum B_n \sin(nx) e^{-c^2n^2t}
+	$$
+	is the general solution to this differential equation given these boundary conditions. Thus
+	$$
+	u(x,t) = -\frac{H}{2c^2}x(x-\pi) + \sum B_n \sin(nx) e^{-c^2n^2t}
+	$$
+	is the general solution to our differential equation. 
+	\bigbreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\problem{\#22 from Sec 12.6} Find the steady state temperature in the square plate with side lenth 24, when the left and right sides are kept at $0^\circ$C while the lower side is kept at $U_0^\circ$C and the upper side is kept at $U_1^\circ$C. \bigbreak
+
+	First I would like to note that I'm unsure if this problem makes physical sense. If the upper side is kept at a constant tempurature $U_1^\circ$C and the left side is kept at $0^\circ$C then what is the tempurature at the upper left point of the plate? These conditions would seem to contradict eachother. \bigbreak
+	
+	To simplify this problem, let's consider the case when $U_0 = 0$. Then we know that a general solution to that PDE with the boundary conditions is 
+	$$
+	v(x,y) = \sum A_n \sin(\tfrac{n\pi}{24}x)\sinh(\tfrac{n\pi}{24}y)
+	$$
+	where
+	\begin{align*}
+		A_n & = \tfrac{2}{24\sinh(n\pi)} \int_0^{24} U_1 \sin(\tfrac{n\pi}{24}x) dx \\
+		& = \tfrac{2}{24\sinh(n\pi)} U_1 \tfrac{24}{n\pi} [-\cos(\tfrac{n\pi}{24}x)]_0^{24} \\
+		& = \frac{2U_1}{n\pi\sinh(n\pi)} [1 - \cos(n\pi)] \\
+		& = \begin{cases}
+				0 & \text{if $n$ is even} \\
+				\tfrac{4U_1}{n\pi\sinh(n\pi)} & \text{if $n$ is odd}
+		\end{cases}
+	\end{align*}
+	To simplify completely we have
+	$$
+	v(x,y) = \sum_{n=0}^\infty \frac{4U_1}{(2n+1)\pi\sinh((2n+1)\pi)} \sin \Big(\tfrac{(2n+1)\pi}{24}x \Big)\sinh \Big(\tfrac{(2n+1)\pi}{24}y \Big)
+	$$
+	or
+	$$
+	v(x,y) = \sum_{n=0}^\infty \frac{4}{(2n+1)\pi\sinh((2n+1)\pi)} \sin \Big(\tfrac{(2n+1)\pi}{24}x \Big) U_1 \sinh \Big(\tfrac{(2n+1)\pi}{24}y \Big)
+	$$
+	We next consider the case when $U_1=0$. If we look for solutions in the form of $w(x, 24-y)$ we will see that this is the same boundary value problem. Hence a solution will be of the form
+	$$
+	w(x,y) = \sum_{n=0}^\infty \frac{4}{(2n+1)\pi\sinh((2n+1)\pi)} \sin \Big(\tfrac{(2n+1)\pi}{24}x \Big) U_0 \sinh \Big(\tfrac{(2n+1)\pi}{24}(24-y) \Big)
+	$$
+	Thus a solution to our general differential equation where $U_1$ and $U_2$ may not be zero is
+	$$
+	u(x,y) = \sum_{n=0}^\infty A_n \sin \Big(\tfrac{(2n+1)\pi}{24}x \Big) 
+	\Big[ U_1 \sinh \Big(\tfrac{(2n+1)\pi}{24}y \Big) + U_0 \sinh \Big(\tfrac{(2n+1)\pi}{24}(24-y) \Big) \Big ]
+	$$
+	Where $A_n = \frac{4}{(2n+1)\pi\sinh((2n+1)\pi)}$.
+
+	
+\end{document}
