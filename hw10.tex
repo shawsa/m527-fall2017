@@ -27,6 +27,8 @@
 \newcommand{\QQ}{\mathbb{Q}}
 \newcommand{\ZZ}{\mathbb{Z}}
 \newcommand{\CC}{\mathbb{C}}
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,16 +147,41 @@
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{\# 24e} Show that $f(z) = \Re(z)$ is not differentiable anywhere. Can you find other such functions?
+\problem{\# 24e} Show that $f(z) = \Re(z)$ is not differentiable anywhere. Can you find other such functions? \bigbreak
+
+	\begin{align*}
+		f^\prime(z) & = \lim_{\Delta z \to 0} \frac{f(z+\Delta z) - f(z)}{\Delta z} \\
+		& = \lim_{\Delta z \to 0} \frac{(x+\Delta x) - x}{\Delta z} \\
+		& = \lim_{\Delta z \to 0} \frac{\Delta x}{\Delta z} \\
+	\end{align*}
+	As $\Delta z$ approaches zero along the sequence $1, \tfrac{1}{2}, \tfrac{1}{3}, ...$ this limit is $1$, but as $\Delta z$ approaches zero along the sequence $i, \tfrac{i}{2}, \tfrac{i}{3}, ...$ this limit is zero. Thus $f$ is not differentiable anywhere. There are many such functions. To name a few
+	\begin{align*}
+		f(z) &= \Im(z) \\
+		f(z) &= -\Im(z) \\
+		f(z) &= 2\Re(z) \\
+	\end{align*}
 
 \bigbreak
 {\hspace{-4 ex} \large \textbf{Section 13.4}}\bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{\# 24}
+\problem{\# 24} Determine $a$ and $b$ so that the given function is harmonic, and determine the harmoic conjugate.
+$$
+u = \cos(ax) \cosh(2y)
+$$
+	From the Cauchy Reimann equations we have
+	\begin{align*}
+		v_y & = u_x & v_x &= -u_y \\
+		&= -a\sin(ax)\cosh(2y) & &= -2\cos(ax)\sinh(2y) \\
+		v & = -\tfrac{a}{2}\sin(ax)\sinh(2y) +f(x) & v & = -\tfrac{2}{a}\sin(ax)\sinh(2y) +g(y) \\
+	\end{align*}
+	Clearly $a = 2$ and the harmonic conjugate is
+	$$
+	v = -\sin(2x)\sinh(2y)
+	$$
 
 \bigbreak
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\problem{4} Find all solutions of thte equation $\cos(z) = 4i$. \bigbreak
+\problem{4} Find all solutions of the equation $\cos(z) = 4i$. \bigbreak
 
 	\begin{align*}
 		\cos(z) &= 4i \\
